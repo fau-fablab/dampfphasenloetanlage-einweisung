@@ -6,8 +6,8 @@ Dampfphasenlötanlage Einweisung
 Einweisung des [FAU FabLab](https://fablab.fau.de) für die Dampfphasenlötanlage [VaporPhase One](https://fablab.fau.de/tool/damphphasenloetanlage).
 
 Die neueste Version gibt es hier zum Download als PDF:
-* [Einweisung](https://brain.fablab.fau.de/build/lasercutter-einweisung/Einweisung_Dampfphasenloetanlage.pdf)
-* [Einweisungsliste](https://brain.fablab.fau.de/build/lasercutter-einweisung/Einweisungsliste_Dampfphasenloetanlage.pdf)
+* [Einweisung](https://brain.fablab.fau.de/build/dampfphasenloetanlage-einweisung/Einweisung_Dampfphasenloetanlage.pdf)
+* [Einweisungsliste](https://brain.fablab.fau.de/build/dampfphasenloetanlage-einweisung/Einweisungsliste_Dampfphasenloetanlage.pdf)
 
 auschecken
 ----------
