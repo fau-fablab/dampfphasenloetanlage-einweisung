@@ -1,7 +1,7 @@
 Dampfphasenlötanlage Einweisung
 =====================
 
-__Work in Progress. Noch nicht auf der Webseite posten__ 
+:warning: __Work in Progress. Noch nicht auf der Webseite posten__ :warning:
 
 Einweisung des [FAU FabLab](https://fablab.fau.de) für die Dampfphasenlötanlage [VaporPhase One](https://fablab.fau.de/tool/damphphasenloetanlage).
 
