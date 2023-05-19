@@ -1,0 +1,272 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COPYRIGHT: (C) 2012-now FAU FabLab and others, CC-BY-SA 3.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Um zum Text zu gelangen, einfach herunterscrollen (bzw. nach dem gewünschten Inhalt suchen.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TeX-Pakete
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\basedir}{fablab-document}
+\documentclass{\basedir/fablab-document}
+
+% \usepackage{fancybox} %ovale Boxen für Knöpfe - nicht mehr benötigt
+\usepackage{amssymb} % Symbole für Knöpfe
+\usepackage{subfigure,caption}
+\usepackage[ngerman]{cleveref} % \cref{label} für Verweise wie "Abbildung 6", "Kapitel 3.1"
+
+\usetikzlibrary{shapes,arrows} % für das flowchart
+
+\usepackage{marvosym} % für Briefumschlag-Symbol
+\usepackage{eurosym}
+\usepackage{tabularx} % Tabellen mit bestimmtem Breitenverhältnis der Spalten
+\usepackage{multirow} % Tabellen Zellen die sich über mehrere Zeilen ausdehnen
+\usepackage{wrapfig} % Textumlauf um Bilder
+
+\renewcommand{\texteuro}{\euro}
+
+\linespread{1.2}
+\fancyfoot[L]{kontakt@fablab.fau.de}
+\title{Einweisung Dampfphasenlötanlage \textit{VaporPhase One}}
+
+\tikzstyle{laserknopf} = [anchor=base, draw=black, fill=gray!10, rectangle, rounded corners, inner sep=2pt, outer sep = 3pt]
+\tikzstyle{lueftungsknopf} = [anchor=base, color=white, draw=black, fill=gray, rectangle, rounded corners, inner sep=2pt, outer sep = 3pt]
+
+% styles für das Flowchart
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, very thick, color=black!50, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+minimum height=2em]
+
+% Knöpfe für Laser und Fernbedienung
+\newcommand{\knopf}[2]{
+	\begin{tikzpicture}[baseline={(box.base)}]
+	\node [#1] (box) {
+		\fontsize{9pt}{9pt}\selectfont \textbf{#2}\strut
+	};
+	\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% diverse Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nurZing}{\emph{nur für Epilog Zing:} }
+\newcommand{\nurLTT}{\emph{nur für LTT iLaser:} }
+\renewcommand{\todo}[1]{\textbf{\color{red}{TODO: #1}}}
+\newcommand{\pfeil}{\ensuremath{\rightarrow}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Befehle für die Knöpfe,
+% z.B. \laserLTTStop für die Stop-Taste am LTT iLaser
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\laserKnopf}[1]{\knopf{laserknopf}{#1}}
+\newcommand{\laserZingXyAus}{\laserKnopf{X/Y aus}}
+\newcommand{\laserRoterLaser}{\laserKnopf{roter Laser}}
+\newcommand{\laserZingStart}{\laserKnopf{Start}}
+\newcommand{\laserZingStop}{\laserKnopf{Stop}}
+\newcommand{\laserZingReset}{\laserKnopf{Reset}}
+\newcommand{\laserLTTPause}{\laserKnopf{$\blacktriangleright\,\parallel$}} % TODO: schöneres Pause-Symbol suchen
+\newcommand{\laserLTTNextJob}{\laserKnopf{$\blacktriangleright\blacktriangleright$}}
+\newcommand{\laserLTTPreviousJob}{\laserKnopf{$\blacktriangleleft\blacktriangleleft$}}
+\newcommand{\laserLTTStop}{\laserKnopf{$\square$}}
+\newcommand{\laserLTTExit}{\laserKnopf{$\curvearrowleft$}} % Pfeil linksrum
+\newcommand{\laserLTTOkay}{\laserKnopf{$\checkmark$}}
+\newcommand{\laserJob}{\laserKnopf{Job}}
+\newcommand{\laserFocus}{\laserKnopf{Focus}}
+\newcommand{\laserPfeilRauf}{\laserKnopf{$\blacktriangle$}}
+\newcommand{\laserPfeilRunter}{\laserKnopf{$\blacktriangledown$}}
+\newcommand{\laserLTTHome}{\laserKnopf{\includegraphics{img/icon-home.pdf}}}
+
+
+\newcommand{\laserDisplay}[1]{\fbox{\texttt{#1}}}
+
+\newcommand{\lueftungKnopf}[1]{\knopf{lueftungsknopf}{#1}}
+%der echte Enterpfeil geht leider nicht: \newcommand{\lueftungEnter}{\lueftungKnopf{↲}}
+% stattdessen ein gespiegelter Pfeil ↰, der fast genauso aussieht.
+\newcommand{\reflectboxX}[1]{\raisebox{\depth}{\scalebox{1}[-1]{#1}}} % Spiegelung an x-Achse
+\newcommand{\returnSymbol}{\reflectboxX{\ensuremath{\mathbf{\Lsh}}}} % Enterpfeil (sieht fast genauso aus)
+\newcommand{\lueftungEnter}{\lueftungKnopf{\returnSymbol}}
+
+%\newcommand{\lueftungEnter}{\lueftungKnopf{\ensuremath{\mathbf{\hookleftarrow}}}}
+\newcommand{\lueftungMinus}{\lueftungKnopf{-}}
+\newcommand{\lueftungPlus}{\lueftungKnopf{+}}
+\newcommand{\lueftungOn}{\lueftungKnopf{On}}
+\newcommand{\lueftungOff}{\lueftungKnopf{Off}}
+\newcommand{\lueftungPfeilRauf}{\lueftungKnopf{$\blacktriangle$}}
+\newcommand{\lueftungPfeilRunter}{\lueftungKnopf{$\blacktriangledown$}}
+
+
+%VisiCut Buttons
+\newcommand{\button}[1]{\knopf{lueftungsknopf}{#1}}
+
+% English translation in gray:
+% \english{text}
+\makeatletter
+% \smaller: switch to small fontsize if current font is > 10pt (i.e., not footnote)
+\newcommand{\smaller}{\ifdim\f@size pt>10pt \small \fi}
+\makeatother
+\newcommand{\english}[1]{{\smaller \color{gray} \itshape #1}}
+
+%% REMOVE THE FOLLOWING LINE TO SHOW THE ENGLISH TRANSLATIONS
+\renewcommand{\english}[1]{}
+
+% Reference to previous footnote, needed when translating footnotes.
+% Usage:
+%   Hallo Welt \footnote{\label{myLabel} Fußnote}
+%   Hello World \footnoteref{myLabel}.
+\newcommand{\footnoteref}[1]{\textsuperscript{\ref{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inhalt des Dokuments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\maketitle
+
+	Diese Einweisung erklärt die Handhabung der Dampfphasenlötanlage \textit{VaporPhase One}, die zu beachtenden Regeln, Gefahren und Sicherheitshinweise.
+	
+	\english{This instruction explains use of the vapor phase soldering unit \textit{VaporPhase One}, and the associated rules, hazards and safety advice.}
+	
+	
+	\section{Einleitung: Warum Dampfphasenlöten?}
+	
+	Beim maschinellen Löten mit Lötpaste ist es sehr wichtig, dass alle Lötstellen gleichmäßig, gleichzeitig und kontrolliert entlang eines vom Hersteller der Lötpaste vorgegebenen Temperaturprofils erhitzt werden, um überall auf der Platine gute Lötstellen gleichbleibend hoher Qualität zu erhalten. \\
+	
+	Man hat dabei die Wahl zwischen einer Anzahl von verschiedenen Lötverfahren, welche alle spezifische Vor- und Nachteile besitzen. Am häufigsten werden das Wellenlöten und das Reflowlöten verwendet. Beim Wellenlöten wird der Wärmeenergieeintrag durch direkte Infrarotstrahlung erreicht, während beim Reflowlöten nach dem Prinzip des Umluftbackofens die Luft um die Platine erhitzt und dadurch ein Wärmeeintrag erreicht wird.\\
+	
+	Das Wellenlöten hat durch die direkte Einstrahlung den Vorteil, dass der Wärmeeintrag auf bestimmte Teile der Platine beschränkt werden kann, um bereits gelötete oder wärmeempfindliche Teile zu schonen. Dadurch kann aber ein Wärmeeintrag unter Bauteilen oder an Stellen die anderweitig abgeschattet sind wen überhaupt nur durch Durcherhitzen der darüberliegenden Teile erreicht werden, was zu ungleichmäßigen Ergebnissen und einer thermischen Überlastung der Bauteile führt.\\
+	
+	Dieses Problem wird beim Reflowlöten umgangen, indem man erhitze Luft als Wärmeübertragungsmedium verwendet. Dies verbessert zwar den Wärmeeintrag in abgeschatteten Stellen, aber durch die geringe Wärmekapazität der Luft ist ein gleichmäßiger Wärmeeintrag unter größeren Bauteilen (z.B. BGA) weiterhin nur bedingt möglich.\\
+	
+	Um diesem Problem zu begegnen, wird beim Dampfphasenlöten statt erhitzter Luft ein spezielles Wärmeübertragungsmedium (\textit{Solvay Galden LS 230}) verwendet, welches bei der gewünschten Löttemperatur verdampft und eine deutlich höhere Wärmekapazität als Luft besitzt, was einen gleichmäßigen Wärmeeintrag auch unter größeren Bauteilen ermöglicht. Es handelt sich dabei um einen Flourpolyether, eine Substanz die bei korrekter Anwendung sowohl gegenüber elektronischen Platinen und Bauteilen als auch gegenüber biologischen Systemen (z.B. Menschen) inert ist. Durch die Verwendung der Gasphase statt einer flüssigen Phase treten auch keine Probleme mit der Oberflächenspannung auf.
+	
+	\section{Sicherheitshinweise}
+	
+	\begin{itemize}
+	\item Das Wärmeübertragungsmedium besitzt eine hohe Wärmekapazität und in der Gasphase eine Temperatur von mindestens 230C. Kontakt des gasförmigen Wärmeübertragungsmediums mit dem Körper ist unbedingt zu vermeiden und führt sehr schnell zu schweren Verbrennungen. Sollte auf Grund einer Störung die Lötkammer vor dem Abkühlen des Gerätes öffnen oder aus anderen Gründen gasförmiges Wärmeübertragungsmedium austreten, sofort vom Gerät entfernen, andere warnen und auffordern sich ebenfalls vom Gerät zu entfernen. Danach unverzüglich Betreuer rufen, Stromversorgung des Gerätes an der Sicherung im Sicherungskasten abschalten, und mindestens 10 Minuten warten bevor man sich dem Gerät wieder nähert.
+	\item Auch im flüssigen Zustand kann das Wärmeübertragungsmedium noch Temperaturen bis zu knapp unter 230C haben. Insbesondere beim Entnehmen der fertigen Platine ist daher vorsicht geboten, nicht in die Lötkammer unterhalb des Lochbleches fassen. Falls etwas in die Lötkammer fällt einen Betreuer rufen, welcher den Gegenstand nach Abkühlen des Gerätes mit einer Zange herausholen wird.
+	\item Die Platine kann nach dem Öffnen der Lötkammer noch Temperaturen von bis zu 120C haben. Beim Entnehmen der Platine eine Zange oder ein anderes geeignetes wärmefestes Hilfsmittel benutzen.
+	\item Das Wärmeübertragungsmedium hat eine ölige Konsistenz und erzeugt sehr rutschige Oberflächen. Insbesondere falls Wärmeübertragungsmedium auf den Boden tropft oder verschüttet wurde ist dieses sofort aufzuwischen oder der Bereich abzusperren, da sonst sehr starke Rutschgefahr besteht.
+	\item Das Wärmeübertragungsmedium zersetzt sich oberhalb von ca 290C, dabei entstehen als Pyrolyseprodukte hochgiftige Flußsäure und kurzkettige flourorganische Verbindungen. Die Lötanlage regelt im Betrieb die Heizung so, dass die Temperatur des Wärmeübertragungsmediums 235C nicht überschreitet. Auf Grund der extremen Gefahren welche von den Pyrolyseprodukten des Wärmeübertragungsmediums ausgehen, ist die Temperatur zusätzlich vom Benutzer im Display während des gesamtem Lötvorganges zu überwachen. Falls eine Temperatur von 240C erreicht oder überschritten wird, ist die Dampfphasenlötanlage sofort am Hauptschalter oder durch ziehen des Netzsteckers abzuschalten und ein Betreuer zu rufen. Die Lötkammer darf durch den Benutzer nicht geöffnet werden.
+	\item Das Wärmeübertragungsmedium ist zwar prinzipiell relativ inert, ist aber trotzdem ein Gefahrstoff und als solcher zu behandeln. Bei der Entnahme fertiger Platinen ist darauf zu achten, dass keine Tropfen des Wärmeübertragungsmedium an der Platine anhaften. Trofen sind durch abschütteln oder abstreifen in die Lötkammer zurückzuführen. Nach dem öffnen der Lötkammer und dem Einlegen oder Entnehmen einer Platine ist es verboten, zu essen oder zu trinken. Dies ist erst wieder nach gründlichem Waschen der Hände erlaubt. 
+	\end{itemize}
+	
+	\section{Vorbereitung des Lötvorganges}
+	\subsection{Geeignete Bauteile und Bauteilanordnungen}
+	
+	Grundsätzlich ist das Dampfphasenlöten nur für oberflächenmontierte Bauteile (SMD/SMT) geeignet. Bedrahtetet Bauteile (THT) müssen \textit{nach} dem Löten in der Dapfphasenlötanlage mit einer anderen Methode aufgelötet werden, und dürfen auch erst danach bestückt werden, um eine unnötige thermische Belastung oder ein Fallen der Bauteile in die Lötkammer zu verhindern.\\
+
+Bauteile dürfen nur einseitig bestückt sein, da unten auf der Platine angebrachte Bauteile mit sehr hoher Wahrscheinlichkeit in das Lötbecken fallen. \\
+
+Bauteile müssen außerdem für die beim Dampfphasenlöten auftretenden Temperaturen (230C für 30 Sekunden) geeignet sein. Ob dies der Fall ist kann im Bauteiledatenblatt des Herstellers nachgesehen werden. Insbesondere bei Bauteilen mit thermoplastischen Anteilen besteht sonst die Gefahr, dass geschmolzener thermoplastischer Kunststoff in die Lötkammer tropft und das Wärmeübertragungsmedium kontaminiert.
+
+\subsection{Bestücken}
+
+Vor dem Löten ist die Platine wie bei anderen automatisierten Lötverfahren auch mit Lötpaste zu versehen und zu bestücken. Die Bauteile etwas andrücken, um die Haftwirkung der Lötpaste gut auszunutzen und die Gefahr des Verrutschens der Bauteile beim Verfahren des Lochbleches in der Lötkammer zu minimieren.
+
+\section{Vorbereitung der Lötanlage}
+\subsection{Vor dem Einschalten}
+
+Vor dem Einschalten ist der Kühlwasserstand hinten Gerät zu überprüfen. Falls er sich nicht zwischen den beiden Markierungen befindet, darf das Gerät nicht eingeschaltet werden. Einen Betreuer rufen, der das Kühlwasser nachfüllen wird.
+
+TODO: Foto Kühlwasserschlauch mit Hervorhebung der Füllstandsmarkierungen
+
+Falls das Gerät schon eingechaltet ist, kann dieser Schritt übersprungen werden.
+
+\subsection{Nach dem Einschalten}
+
+\paragraph{Füllstand des Wärmeübertragungmediums überprüfen}
+
+Nachdem das Gerät eingeschalten wurde, \textit{und vor jedem Lötvorgang} ist zunächst die Lötkammer zu öffnen, und der Füllstand des Wärmeübertragungsmediums zu überprüfen. Die Füllstandsmarkierungen befinden sich in der Lötkammer unten links auf einem vertikalen Metallstreifen. Falls sich der Füllstand nicht zwischen den beiden Markierungen befindet darf das Gerät nicht verwendet werden. Einen Betreuer rufen.
+
+TODO: Foto Füllstandsmarkierung in der Lötkammer mit Hervorhebung
+
+\paragraph{Einstellungen überprüfen}
+
+Auf dem Bildschirm des Gerätes durch zweimaliges Wischen nach links auf den rechten Bildschirm schalten. Dort sind folgende Einstellungen vorzunehmen bzw zu überprüfen:\\
+
+Die SD-Karte des Gerätes muss gemountet sein. Falls neben dem Wort "SD-Card" ein Knopf "Mount" zu sehen ist, ist dieser zu betätgen. Wenn dort stattdessen ein Knopf "Eject" zu sehen ist, ist die SD-Karte korrekt gemountet.\\
+
+Der Betriebsmodus ist auf \textit{Eco} einzustellen. Ein Betrieb in den Modi \textit{Standard} oder \textit{Fast} ist verboten, da durch das frühere Öffnen der Lötkammer eine zu große Menge des Wärmeübertragungsmediums verloren geht. (1L des Wärmeübertragungsmediums kostet ca. 200€!)\\
+
+Das Profil "custom_230.csv" ist auszuwählen und mit dem Knopf "Set" zu bestätigen.\\
+
+TODO: Foto des Bildschirms mit den entsprechenden Einstellungen hervorgehoben.
+
+\paragraph{Temperatursensorposition}
+
+Der Temperatursensor (verdrillte grüne und weiße Kabel) muss am Lochblech angebracht und außerhalb oben and der Rückseite des Gerätes eingesteckt sein.
+
+TODO: Bild Temperatursensor innen und außen
+
+\section{Löten}
+
+Nachdem alle Vorbereitungen abgeschlossen sind, kann die bestückte Platine auf das Lochblech gelegt und die Lötkammer geschlossen werden.\\
+
+Nach dem schließen visuell überprüfen, dass beim Schließen weder die Platine noch die Bauteile darauf verrutscht sind.\\
+
+Danach kann der Lötvorgang auf dem linken Bildschirm gestartet werden.\\
+
+TODO: Bild linker Bildschirm, hervorhebung knöpfe schließen und start
+
+Nach dem Start auf den mittleren Bildschirm schalten, und den Lötvorgang überwachen. Dabei ist auf die möglichst genaue übereinstimmung der Ist-Temperatur (blaue Kurve) mit der Solltemperatur (rote Kurve), sowie auf die Temperatur des Wärmeübertragungsmediums zu achten, welche keinesfalls über 240C steigen darf. 
+
+TODO: Bild mittlerer Bildschirm, hervorhebungen Kurven und Temperatur Galden
+
+Sofern keine Störungen auftreten, läuft der Lötvorgang automatisch ab. Nach dem Lötvorgang wird ein Abkühlen der Lötkammer auf ca. 90C abgewartet bevor die Lötkammer mit dem Ende des Programms automatisch öffnet. Das Abkühlen ist unbedingt abzuwarten.\\
+
+Falls das Programm vorzeitig abgebrochen wird, ist ein Öffnen der Lötkammer oberhalb einer Temperatur des Wärmeübertragungsmediums von 90C nur nach Rücksprache mit einem Betreuer und in Ausnahmefällen erlaubt, da dadurch ein erhöhter Austritt noch gasförmigen Wärmeübertragungsmediums möglich ist. Auch hier ist stattdessen die Temperatur des Wärmeübertragungsmediums am mittleren Bildschirm zu beobachten, und das Fallen der Temperatur unter 90C abzuwarten.\\
+
+Nach dem Öffnen der Lötkammer kann die Platine mit einer Zange (vorsicht heiß) entnommen werden. Eventuell noch anhaftende Tropfen des Wärmeübertragungsmediums sind in das Lötbecken abzuschütteln oder abzustreifen bevor die Platine entgültig entnommen wird.\\
+
+Nach dem Löten unbedingt die Hände waschen, um eine unebabsichtige Aufnahme des Wärmeübertragungsmediums in den Körper zu vermeiden.
+
+\section{Nach dem Löten}
+
+Nach dem Löten ist kurz visuell zu überprüfen, ob keine Fremdkörper in die Lötkammer gefallen sind. Danach ist die Lötkammer zu schließen. Wenn keine weiteren Lötvorgänge geplant sind, ist das Gerät am Hauptschalter auszuschalten.
+
+	\section{Checkliste}
+
+	\begin{itemize}
+
+	\item Sind alle verwendeten Bauteile für das Reflow- oder Dampfphasenlöten geeignet? (Temperaturbeständigkeit, sind keine Bauteile auf der Unterseite der Platine (auch schon vorher aufgehlötete)
+	\item Ist der Kühlwasserstand innerhalb der beiden Markierungen? (weißer Schlauch auf der Rückseite) 
+	\item Die Maschine kann jetzt am Hauptschalter (hinten rechts unten) eingeschaltet werden
+	\item Ist die Temperatur des Wärmeübertragungsmediums unter 90C? (Mittlerer Bildschirm, oben Mitte) Falls nicht, erst Abkühlen abwarten.
+	\item Lötkammer öffnen (Linker Bildschirm, Knopf "Open")
+	\item Ist der Füllstand des Wärmeübertragungsmediums zwischen den beiden Markierungen? (Kerben auf dem senkrechten Metallstreifen im Lötbecken unten links)
+	\item Ist der Temperatursensor (verdrilltes grünes und weißes Kabel) am Lochblech angebracht und auf Höhe einer eigelegten Platine sowie am Gerät hinten eingesteckt?
+	\item Bestückte Platine auf das Lochblech legen, Kammer schließen (Linker Bildschirm, Knopf "Close")
+	\item Ist die SD-Karte gemountet? Falls ein Knopf "Mount" zu sehen ist, ist dieser zu betätigen. Ein Knopf "Eject" zeigt an, dass die SD-Karte bereits gemountet ist. (Rechter Bildschirm)
+	\item Ist der Modus "Eco" ausgewählt? (Rechter Bildschirm)
+	\item Ist das passende Lötprofil ausgewählt? Falls kein spezielles Profil benötig wird, das Profil "custom_230.csv" verwenden. (Rechter Bildschirm, nach dem Auswählen den Knopf "Set" drücken)
+	\item Lötvorgang starten (Linker Bildschirm, Knopf "Start Reflow")
+	\item Den Lötvorgang auf dem mittleren Bildschirm beobachten. Inbesondere ist die Temperatur des Galdens (im Bildschirm oben rechts) zu überwachen, sie darf keinesfalls über 240C steigen. Im Notfall spätestens bei bei Erreichen und Überschreiten von 241C das Gerät sofort am Hauptschalter hinten rechts unten oder durch ziehen des Netzsteckers ausschalten und Betreuer rufen. 
+	\item Auf das Ende des Löt- und Abkühlvorganges warten (Temperatur des Wärmeübertragungsmediums unter 90C). Die Lötkammer öffnet automatisch. Vorsicht, die Platine hat immernoch eine Temperatur von ca. 100C. Zum Entnehmen eine Zange verwendenden. Anhaftende Tropfen Wärmeübertragungsmedium an der Platine in die Lötkammer abschütteln.
+	\item Visuelle Kotrolle der Lötkammer auf hingefallene Fremdkörper, dann Lötkammer schließen. 
+	\item Zwischen mehreren Lötvorgängen ist die Lötkammer geschlossen zu halten, um die Verdunstung des Wärmeübertragungsmediums zu minimieren.
+	\item Falls keine weiteren Lötvorgänge geplant sind das Gerät am Hauptschalter ausschalten. 
+	
+	\end{itemize}	
+	
+	\section{Wartung (für Betreuer)}
+	
+	\subsection{Kühlwasserstand}
+	
+	Sofern der Kühlwasserstand zu niedrig ist, einfach mit destilliertem/deionisiertem Wasser nachfüllen. Dann bitte Mail auf die Mailingliste, dass der Kühlwasserstand niedrig war, um die Dichigkeit der Kühlung zu überwachen (damit wir mitbekommen, falls der Kühlwasserstand oft oder öfters nierdrig ist)
+	
+	 Das Kühlwasser in die Einfüllöffnung direkt über dem weißen Schlauch einfüllen, nicht vergessen die Verschlusskappe wieder aufzuschrauben.
+	
+	\subsection{Galdenstand}	
+	
+	Galden kann einfach nachgefüllt werden, wenn der Stand niedrig ist, hier iat an sich nichts weiter zu beachten. 
+	
+	
+	\newpage
+	\ccLicense{dampfphasenlötanlage-einweisung}{Einweisung Dampfphasenlötanlage}
+
+\end{document}
