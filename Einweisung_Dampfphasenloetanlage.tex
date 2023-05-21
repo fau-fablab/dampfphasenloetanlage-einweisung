@@ -121,6 +121,16 @@ minimum height=2em]
 %   Hello World \footnoteref{myLabel}.
 \newcommand{\footnoteref}[1]{\textsuperscript{\ref{#1}}}
 
+%knöpfe für VaporPhase One
+\newcommand{\vpoMount}{\laserKnopf{Mount}}
+\newcommand{\vpoEject}{\laserKnopf{Eject}}
+\newcommand{\vpoEco}{\laserKnopf{Eco}}
+\newcommand{\vpoStandard}{\laserKnopf{Standard}}
+\newcommand{\vpoFast}{\laserKnopf{Fast}}
+\newcommand{\vpoSet}{\laserKnopf{Set}}
+\newcommand{\vpoOpen}{\laserKnopf{Open Lid}}
+\newcommand{\vpoClose}{\laserKnopf{Close Lid}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inhalt des Dokuments
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,13 +201,14 @@ Nachdem das Ger{\"a}t eingeschalten wurde, \textit{und vor jedem L{\"o}tvorgang}
 
 Auf dem Bildschirm des Ger{\"a}tes durch zweimaliges Wischen nach links auf den rechten Bildschirm schalten. Dort sind folgende Einstellungen vorzunehmen bzw zu {\"u}berpr{\"u}fen:\\
 
-Die SD-Karte des Ger{\"a}tes muss gemountet sein. Falls neben dem Wort \textit{SD-Card} ein Knopf \textit{Mount} zu sehen ist, ist dieser zu bet{\"a}tgen. Wenn dort stattdessen ein Knopf "Eject" zu sehen ist, ist die SD-Karte korrekt gemountet.\\
+Die SD-Karte des Ger{\"a}tes muss gemountet sein. Falls neben dem Wort \textit{SD-Card} ein Knopf \vpoMount zu sehen ist, ist dieser zu bet{\"a}tgen. Wenn dort stattdessen ein Knopf \vpoEject zu sehen ist, ist die SD-Karte korrekt gemountet.\\
 
-Der Betriebsmodus ist auf \textit{Eco} einzustellen. Ein Betrieb in den Modi \textit{Standard} oder \textit{Fast} ist verboten, da durch das fr{\"u}here {\"o}ffnen der L{\"o}tkammer eine zu gro{\ss}e Menge des W{\"a}rme{\"u}bertragungsmediums verloren geht. (1L des W{\"a}rme{\"u}bertragungsmediums kostet ca. 200Euro!)\\
+Der Betriebsmodus ist auf \vpoEco einzustellen. Ein Betrieb in den Modi \vpoStandard oder \vpoFast ist verboten, da durch das fr{\"u}here {\"o}ffnen der L{\"o}tkammer eine zu gro{\ss}e Menge des W{\"a}rme{\"u}bertragungsmediums verloren geht. (1L des W{\"a}rme{\"u}bertragungsmediums kostet ca. 200 Euro!)\\
 
-Das Profil \textit{custom\_230.csv} ist auszuw{\"a}hlen und mit dem Knopf \textit{Set} zu best{\"a}tigen.\\
+Das Profil \textit{custom\_230.csv} ist auszuw{\"a}hlen und mit dem Knopf \vpoSet zu best{\"a}tigen.\\
 %\todo{Foto des Bildschirms mit den entsprechenden Einstellungen hervorgehoben}
-\paragraph{Temperatursensorposition}\\
+\paragraph{Temperatursensorposition}
+
 Der Temperatursensor (verdrillte gr{\"u}ne und wei{\ss}e Kabel) muss am Lochblech angebracht und au{\ss}erhalb oben and der R{\"u}ckseite des Ger{\"a}tes eingesteckt sein.
 
 %\todo{Bild Temperatursensor innen und au{\ss}en}
@@ -230,19 +241,19 @@ Nach dem L{\"o}ten ist kurz visuell zu {\"u}berpr{\"u}fen, ob keine Fremdk{\"o}r
 
 	\begin{itemize}
 
-	\item Sind alle verwendeten Bauteile f{\"u}r das Reflow- oder Dampfphasenl{\"o}ten geeignet? (Temperaturbest{\"a}ndigkeit, sind keine Bauteile auf der Unterseite der Platine (auch schon vorher aufgehl{\"o}tete)
+	\item Sind alle verwendeten Bauteile f{\"u}r das Reflow- oder Dampfphasenl{\"o}ten geeignet? (Temperaturbest{\"a}ndigkeit, sind keine Bauteile auf der Unterseite der Platine (auch schon vorher aufgel{\"o}tete)
 	\item Ist der K{\"u}hlwasserstand innerhalb der beiden Markierungen? (wei{\ss}er Schlauch auf der R{\"u}ckseite) 
 	\item Die Maschine kann jetzt am Hauptschalter (hinten rechts unten) eingeschaltet werden
 	\item Ist die Temperatur des W{\"a}rme{\"u}bertragungsmediums unter 70\textdegree C? (Mittlerer Bildschirm, oben Mitte) Falls nicht, erst Abk{\"u}hlen abwarten.
-	\item L{\"o}tkammer {\"o}ffnen (Linker Bildschirm, Knopf \textit{Open})
+	\item L{\"o}tkammer {\"o}ffnen (Linker Bildschirm, Knopf \vpoOpen)
 	\item Ist der F{\"u}llstand des W{\"a}rme{\"u}bertragungsmediums zwischen den beiden Markierungen? (Kerben auf dem senkrechten Metallstreifen im L{\"o}tbecken unten links)
 	\item Ist der Temperatursensor (verdrilltes gr{\"u}nes und wei{\ss}es Kabel) am Lochblech angebracht und auf H{\"o}he einer eigelegten Platine sowie am Ger{\"a}t hinten eingesteckt?
 	\item Best{\"u}ckte Platine auf das Lochblech legen, Kammer schlie{\ss}en (Linker Bildschirm, Knopf \textit{Close})
-	\item Ist die SD-Karte gemountet? Falls ein Knopf \textit{Mount} zu sehen ist, ist dieser zu bet{\"a}tigen. Ein Knopf \textit{Eject} zeigt an, dass die SD-Karte bereits gemountet ist. (Rechter Bildschirm)
-	\item Ist der Modus \textit{Eco} ausgew{\"a}hlt? (Rechter Bildschirm)
-	\item Ist das passende L{\"o}tprofil ausgew{\"a}hlt? Falls kein spezielles Profil ben{\"o}tig wird, das Profil \textit{custom\_230.csv} verwenden. (Rechter Bildschirm, nach dem Ausw{\"a}hlen den Knopf \textit{Set} dr{\"u}cken)
+	\item Ist die SD-Karte gemountet? Falls ein Knopf \vpoMount zu sehen ist, ist dieser zu bet{\"a}tigen. Ein Knopf \vpoEject zeigt an, dass die SD-Karte bereits gemountet ist. (Rechter Bildschirm)
+	\item Ist der Modus \vpoEco ausgew{\"a}hlt? (Rechter Bildschirm)
+	\item Ist das passende L{\"o}tprofil ausgew{\"a}hlt? Falls kein spezielles Profil ben{\"o}tig wird, das Profil \textit{custom\_230.csv} verwenden. (Rechter Bildschirm, nach dem Ausw{\"a}hlen den Knopf \vpoSet dr{\"u}cken)
 	\item L{\"o}tvorgang starten (Linker Bildschirm, Knopf \textit{Start Reflow})
-	\item Den L{\"o}tvorgang auf dem mittleren Bildschirm beobachten. Inbesondere ist die Temperatur des Galdens (im Bildschirm oben rechts) zu {\"u}berwachen, sie darf keinesfalls {\"u}ber 240\textdegree C steigen. Im Notfall sp{\"a}testens bei bei Erreichen und {\"u}berschreiten von 241\textdegree C das Ger{\"a}t sofort am Hauptschalter hinten rechts unten oder durch ziehen des Netzsteckers ausschalten und Betreuer rufen. 
+	\item Den L{\"o}tvorgang auf dem mittleren Bildschirm beobachten. Inbesondere ist die Temperatur des Galdens (im Bildschirm oben rechts) zu {\"u}berwachen, sie darf keinesfalls {\"u}ber 240\textdegree C steigen. Im Notfall sp{\"a}testens bei bei Erreichen und {\"u}berschreiten von 240\textdegree C das Ger{\"a}t sofort am Hauptschalter hinten rechts unten oder durch ziehen des Netzsteckers ausschalten und Betreuer rufen. 
 	\item Auf das Ende des L{\"o}t- und Abk{\"u}hlvorganges warten (Temperatur des W{\"a}rme{\"u}bertragungsmediums unter 70\textdegree C). Die L{\"o}tkammer {\"o}ffnet automatisch. Vorsicht, die Platine hat immernoch eine Temperatur von ca. 100\textdegree C. Zum Entnehmen eine Zange verwendenden. Anhaftende Tropfen W{\"a}rme{\"u}bertragungsmedium an der Platine in die L{\"o}tkammer absch{\"u}tteln.
 	\item Visuelle Kotrolle der L{\"o}tkammer auf hingefallene Fremdk{\"o}rper, dann L{\"o}tkammer schlie{\ss}en. 
 	\item Zwischen mehreren L{\"o}tvorg{\"a}ngen ist die L{\"o}tkammer geschlossen zu halten, um die Verdunstung des W{\"a}rme{\"u}bertragungsmediums zu minimieren.
@@ -262,8 +273,24 @@ Nach dem L{\"o}ten ist kurz visuell zu {\"u}berpr{\"u}fen, ob keine Fremdk{\"o}r
 	
 	Galden kann einfach nachgef{\"u}llt werden, wenn der Stand niedrig ist, hier iat an sich nichts weiter zu beachten. 
 	
+	\subsection{Betriebsmedien ablassen}
+	
+	Falls die Betriebsmedien (Galden und Kühlwasser) abgelassen werden müssen, zum Beispiel zum Transport oder zur Reinigung der Lötkammer, ist folgendermaßen vorzugehen:
+	
+	\paragraph{Kühlwasser}
+	Das Kühlwasser kann abgelassen werden, indem hinten am Gerät am weißen Kühlwaserschlauch die obere Klemme gelöst wird (bitte nicht verlieren!) und das Kühlwasser dann über den Schlauch abgelassen wird.
+	
+	\paragraph{Galden}
+	Das Galden kann mit einer Spritze (in der blauen Zubehörkiste) aus dem Lötbecken in die Vorratsflasche transferriert werden. Bitte dabei möglichst alles transferieren, da Galden sehr teuer ist (1L kostet ca 200 Euro)
+	
+		\subsection{SD-Karte}
+	Die SD-Karte befindet sich unter dem FabLab-Aufkleber rechts neben dem Display. Auf der SD-Karte sind die Lötprofile, und Logfiles. Bitte die Karte nur entnehmen wenn wirklich notwendig, und danach gleich wieder ins Gerät einlegen.
+	
+\vpoMount	
 	
 	\newpage
 	\ccLicense{dampfphasenl{\"o}tanlage-einweisung}{Einweisung Dampfphasenl{\"o}tanlage}
+	
+
 
 \end{document}
